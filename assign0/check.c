@@ -36,13 +36,75 @@ bool stringEquals(char *s1, char *s2)
     return c1 == '\0' && c2 == '\0';
 }
 
-bool isArithmetic(char** tokens) {
-    return stringEquals(tokens[1],"-") || stringEquals(tokens[1],"*") 
-        || stringEquals(tokens[1],"+") || stringEquals(tokens[1],"/");
+bool isArithmetic(char** tokens, int numTokens) {
+    if(numTokens != 3) {
+        return false;
+    }
+
+    if(!(stringEquals(tokens[0],"1")
+                || stringEquals(tokens[0],"2") 
+                || stringEquals(tokens[0],"3") 
+                || stringEquals(tokens[0],"4") 
+                || stringEquals(tokens[0],"5") 
+                || stringEquals(tokens[0],"6") 
+                || stringEquals(tokens[0],"7") 
+                || stringEquals(tokens[0],"8") 
+                || stringEquals(tokens[0],"9") 
+                || stringEquals(tokens[0],"0"))) {
+        return false;
+    }
+    
+    if(!(stringEquals(tokens[1],"-") || stringEquals(tokens[1],"*") 
+                || stringEquals(tokens[1],"+") || stringEquals(tokens[1],"/"))) {
+        return false;
+    }
+
+    if(!(stringEquals(tokens[2],"1")
+                || stringEquals(tokens[2],"2") 
+                || stringEquals(tokens[2],"3") 
+                || stringEquals(tokens[2],"4") 
+                || stringEquals(tokens[2],"5") 
+                || stringEquals(tokens[2],"6") 
+                || stringEquals(tokens[2],"7") 
+                || stringEquals(tokens[2],"8") 
+                || stringEquals(tokens[2],"9") 
+                || stringEquals(tokens[2],"0"))) {
+        return false;
+    }
+
+    return true;
 }
 
-bool isLogical(char** tokens) {
-    return stringEquals(tokens[1], "AND") || stringEquals(tokens[1], "OR");
+bool isLogical(char** tokens, int numTokens) {
+    if(stringEquals(tokens[0], "NOT")) {
+        if(numTokens > 2) {
+            return false;
+        } else {
+            return stringEquals(tokens[1], "true")
+                || stringEquals(tokens[1], "false");
+        }
+    }
+
+    if(numTokens != 3) {
+        return false;
+    }
+
+    if(!(stringEquals(tokens[0], "true") 
+                || stringEquals(tokens[0], "false"))) {
+        return false;
+    }
+    
+    if(!(stringEquals(tokens[1], "AND") 
+                || stringEquals(tokens[1], "OR"))) {
+        return false;
+    }
+
+    if(!(stringEquals(tokens[2], "true") 
+                || stringEquals(tokens[2], "false"))) {
+        return false;
+    }
+    
+    return true;
 }
 
 
@@ -181,7 +243,10 @@ char* delimSemicolon(int*expressionLen, char*in, int start){
 int main(int argc, char* argv[]){
 
 
-
+    if (argc >2){
+        printf("too many arguments\n");
+        exit(1);
+    }
     //  initialize variables
     int numElements = 0; // for freeing
     int expressionLen = 0; // length of expression
@@ -203,10 +268,10 @@ int main(int argc, char* argv[]){
         printf("%s\n", expression);
         char **tokens = delimSpace(&numElements, expression);
 
-        if (isLogical(tokens)){
+        if (isLogical(tokens, numElements)){
             numLogicalExps++;
         }
-        if (isArithmetic(tokens)){
+        if (isArithmetic(tokens, numElements)){
             numArithmeticExps++;
         }
 
