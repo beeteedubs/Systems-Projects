@@ -5,6 +5,7 @@
 #define ARITHMETICOPERANDS '1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'0'
 #define LOGICALOPERANDS  "true" || "false"
 
+typedef enum _Error {VALID, SCAN, PARSE, OPERATOR, OPERAND, MISMATCH} Error;
 
 
 //return string length
@@ -36,9 +37,11 @@ bool stringEquals(char *s1, char *s2)
     return c1 == '\0' && c2 == '\0';
 }
 
-bool isArithmetic(char** tokens, int numTokens) {
-    if(numTokens != 3) {
-        return false;
+Error isArithmetic(char** tokens, int numTokens) {
+    if(numTokens < 3) {
+        return SCAN;
+    } else if(numTokens > 3) {
+        return PARSE;
     }
 
     if(!(stringEquals(tokens[0],"1")
@@ -51,12 +54,12 @@ bool isArithmetic(char** tokens, int numTokens) {
                 || stringEquals(tokens[0],"8") 
                 || stringEquals(tokens[0],"9") 
                 || stringEquals(tokens[0],"0"))) {
-        return false;
+        return OPERAND;
     }
     
     if(!(stringEquals(tokens[1],"-") || stringEquals(tokens[1],"*") 
                 || stringEquals(tokens[1],"+") || stringEquals(tokens[1],"/"))) {
-        return false;
+        return OPERATOR;
     }
 
     if(!(stringEquals(tokens[2],"1")
@@ -69,42 +72,50 @@ bool isArithmetic(char** tokens, int numTokens) {
                 || stringEquals(tokens[2],"8") 
                 || stringEquals(tokens[2],"9") 
                 || stringEquals(tokens[2],"0"))) {
-        return false;
+        return OPERAND;
     }
 
-    return true;
+    return VALID;
 }
 
-bool isLogical(char** tokens, int numTokens) {
+Error isLogical(char** tokens, int numTokens) {
     if(stringEquals(tokens[0], "NOT")) {
-        if(numTokens > 2) {
-            return false;
+        if(numTokens < 2) {
+            return SCAN;
+        } else if(numTokens > 2) {
+            return PARSE;
         } else {
-            return stringEquals(tokens[1], "true")
-                || stringEquals(tokens[1], "false");
+            if(stringEquals(tokens[1], "true")
+                    || stringEquals(tokens[1], "false")) {
+                return VALID;
+            } else {
+                return OPERAND;
+            }
         }
     }
 
-    if(numTokens != 3) {
-        return false;
+    if(numTokens < 3) {
+        return SCAN;
+    } else if(numTokens > 3) {
+        return PARSE;
     }
 
     if(!(stringEquals(tokens[0], "true") 
                 || stringEquals(tokens[0], "false"))) {
-        return false;
+        return OPERAND;
     }
     
     if(!(stringEquals(tokens[1], "AND") 
                 || stringEquals(tokens[1], "OR"))) {
-        return false;
+        return OPERATOR;
     }
 
     if(!(stringEquals(tokens[2], "true") 
                 || stringEquals(tokens[2], "false"))) {
-        return false;
+        return OPERAND;
     }
     
-    return true;
+    return VALID;
 }
 
 
@@ -207,7 +218,6 @@ char** delimSpace(int* numTokens, char *in){
 //  return char array (aka expression) and whether hit \0  |
 ///////////////////////////////////////////////////////////
 char* delimSemicolon(int*expressionLen, char*in, int start){
-    printf("%x -> %d\n", expressionLen, *expressionLen);
     int index = start;
     *expressionLen = 0;
     //1st loop determine how much space to malloc, continue as long as not ';' and not '\0'
@@ -250,6 +260,7 @@ int main(int argc, char* argv[]){
     //  initialize variables
     int numElements = 0; // for freeing
     int expressionLen = 0; // length of expression
+    int numExps = 0;
     int numArithmeticExps = 0;
     int numLogicalExps = 0;
 
@@ -265,22 +276,29 @@ int main(int argc, char* argv[]){
         }
         char *expression = delimSemicolon(&expressionLen, s, counter);
         counter = counter+expressionLen+1;
-        printf("%s\n", expression);
         char **tokens = delimSpace(&numElements, expression);
 
-        if (isLogical(tokens, numElements)){
+        Error logicError = isLogical(tokens, numElements);
+        Error arithmeticError = isArithmetic(tokens, numElements);
+        
+        if(logicError == VALID) {
             numLogicalExps++;
-        }
-        if (isArithmetic(tokens, numElements)){
+        } else if(arithmeticError == VALID) {
             numArithmeticExps++;
+        } else {
+            printf("Parse error on expresssion %i\n", numExps);
         }
-
+        numExps++;
     }
 
-    printf("Found %i expressions, : %i logical and %i arithmetic.\nOK\n", 
-            (numLogicalExps + numArithmeticExps), 
+    printf("Found %i expressions: %i logical and %i arithmetic.\n", 
+            numExps, 
             numLogicalExps, 
             numArithmeticExps); 
+
+    if(numExps == numLogicalExps + numArithmeticExps) {
+        printf("OK\n");
+    }
 
     //  frees the dynamically allocated mem
     // int i = 0;
