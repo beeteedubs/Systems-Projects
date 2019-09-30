@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define ARITHMETICOPERATORS '+'||'*'||'/'||'-'
 #define ARITHMETICOPERANDS '1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'0'
 #define LOGICALOPERANDS  "true" || "false"
 
@@ -20,39 +19,32 @@ int strLen (char*str){
 }
 
 //returns 0 if equal
-int stringComp  (const char *p1, const char *p2)
+bool stringEquals(char *s1, char *s2)
 {
-    const unsigned char *s1 = (const unsigned char *) p1;
-    const unsigned char *s2 = (const unsigned char *) p2;
-    unsigned char c1, c2;
-    do
-    {
-        c1 = (unsigned char) *s1++;
-        c2 = (unsigned char) *s2++;
-        if (c1 == '\0')
-            return c1 - c2;
+    char c1 = *s1++;
+    char c2 = *s2++;
 
+    while(c1 != '\0' && c2 != '\0') {
+        if(c1 != c2) {
+            return false;
+        }
+
+        c1 = *s1++;
+        c2 = *s2++;
     }
-    while (c1 == c2);
-    return c1 - c2;
 
+    return c1 == '\0' && c2 == '\0';
 }
 
-
-//return 0 if arithmetic
-//return 1 if logical
-int typeExpression (char **strArr){
-    int ret = 0;
-
-    if (strArr[1][0] == ARITHMETICOPERATORS){
-        ret = 0;
-    }
-
-    if (stringComp(*(strArr+1), "AND") == 0 || stringComp(*(strArr+1), "OR") == 0){
-        ret = 1;
-    }
-    return ret;
+bool isArithmetic(char** tokens) {
+    return stringEquals(tokens[1],"-") || stringEquals(tokens[1],"*") 
+        || stringEquals(tokens[1],"+") || stringEquals(tokens[1],"/");
 }
+
+bool isLogical(char** tokens) {
+    return stringEquals(tokens[1], "AND") || stringEquals(tokens[1], "OR");
+}
+
 
 
 //////////////////////////////////////////////////////////\
@@ -193,7 +185,6 @@ int main(int argc, char* argv[]){
     //  initialize variables
     int numElements = 0; // for freeing
     int expressionLen = 0; // length of expression
-    printf("%x\n", &expressionLen);
     int numArithmeticExps = 0;
     int numLogicalExps = 0;
 
@@ -211,12 +202,20 @@ int main(int argc, char* argv[]){
         counter = counter+expressionLen+1;
         printf("%s\n", expression);
         char **tokens = delimSpace(&numElements, expression);
-        int insideCounter = 0;
-        while(insideCounter < numElements){
-            printf("%s\n", *(tokens+insideCounter));
-            insideCounter++;
+
+        if (isLogical(tokens)){
+            numLogicalExps++;
         }
+        if (isArithmetic(tokens)){
+            numArithmeticExps++;
+        }
+
     }
+
+    printf("Found %i expressions, : %i logical and %i arithmetic.\nOK\n", 
+            (numLogicalExps + numArithmeticExps), 
+            numLogicalExps, 
+            numArithmeticExps); 
 
     //  frees the dynamically allocated mem
     // int i = 0;
