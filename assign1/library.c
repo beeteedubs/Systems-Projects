@@ -2,75 +2,45 @@
 #include <string.h>
 #include "header.h"
 
-//x is # of bytes
-//one given, scan array
-//how scan?
-//  start at beginning of array, check for magic number
-//      if magic number, that means metadata so skip ahead appropriately and check progress
-//      else scan next x bytes checking for magic number
-//          if can't scan x bytes by hitting magic number, skip ahead appropriately
-//          else create the metadata and throw in user data
-//skip ahead appropriately:
-//  traverse until see the short "use", and then jump ahead that much + 2
-//throw in user data:
-//  returning a pointer should be a memory address of arr
-
 static char arr[4096];
 
 void* mymalloc(int x){
+    // ------------------ CHANGE LATER
+    // - use magicNum once
+    
+    // metadata composed of 6 bytes: 4 bytes for magicNum, 2 bytes for how much user data
+    //
     struct meta data;
-    data.magicNum = 1000000;
+    data.magicNum = 70;
     data.used = (short) x;
-
-    /*
-// loop until finds empty space 
-    int i = 0;
-    while (arr[i] == data.magicNum){
-        i++;
-    }
-// finds enough free space
+    int sumArr[4];
     int freeSpace = 0;
-    while (freeSpace <= x+6){
-        if(arr[i] != data.magicNum){
+    int i = 0;
+    while(arr[i] != data.magicNum && freeSpace <= x+6) {
+
+        // loop until finds empty space 
+                
+        if(arr[i] == data.magicNum){//should be true after first time
+            freeSpace = 0;
+        }else{
             freeSpace++;
         }
-        else{
-            printf("fucked up, not enough free space\n");
-            break;
-        }
+
+        // just dupm struct inside use memcopy 
+        memcpy(sumArr, &arr[i], sizeof(data.magicNum));
+        i++;
     }
+    // copies metadata into arr
+    memcpy(&arr[i-x-6], (void *) &data, sizeof(data));
+    printf("\narr = %p\n", &arr[i-x-6]);
 
-// insert struct into arr
-    int* magicNumPtr = (int*)arr;
-    short* usePtr = (int*)arr;
-
-   */// just dupm struct inside use memcopy 
-    memcpy(arr, (void *) &data, sizeof(data));
-    char* ptr = ((char *) &arr + 6);
-    
-    // printf("This is the value at  ptr: %s\n", *ptr);
-
-    printf("arr = %p, ptr = %p\n", &arr, ptr);
-
-    *ptr = 'a';
-    *(ptr + 1) = 'b';
-    *(ptr + 2) = 'c';
-    *(ptr + 3) = '\0';
-
-    printf("arr: %s\n", arr + 6);
+    // creates ptr to 6 bytes after metadata
+    char* ptr = ((char *) &arr[i-x]);
     
     return (void*) ptr;
 
     
-/*
-    char *ptr = &arr[0];
-    printf("*ptr's value %c\n", *ptr);
-    printf("ptr's value %p\n", ptr);
-
-    return ptr;
-    */
 }
-
 
 void  myfree(int x){
     printf("\nThis is x + 2: \n");

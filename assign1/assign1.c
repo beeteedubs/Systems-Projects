@@ -1,20 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-/* 
- * make corresponding library
- *  preprocessing, compilation, 
- *
- * ? y not include header file in lib 
- * ? makefile adding that assign1?
- *
- * metadata struct magic int, cuz more bytes more guaranteed be unique
- * besides magic num, short indicating how long
- *
- * first iteration, scan through enough sizeOf(userData) 
- *
- *
- */
 
 //x is # of bytes
 //one given, scan array
@@ -31,17 +17,14 @@
 
 
 int main(){
-    /*
-    arr[6] = 'a';
-    arr[7] = 'b';
-    arr[8] = 'c';
-    arr[9] = '\0';
-    */
-
-    char *ptr = (char*) malloc(4);
-
-    printf("String is %s\n", ptr);
     
+    int i = 0;
+    char *ptr;
+    while (i<100){
+        ptr = (char*) malloc(1);
+        printf("String is %p\n", ptr);
+        i++;
+    }
     /*
     int i;
     for (i = 0; i<=3; i++) {
