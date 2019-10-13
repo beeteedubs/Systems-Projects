@@ -10,11 +10,11 @@
 // 1st macro replace malloc(x) calls
 #define malloc(x) mymalloc(x)
 // 2nd macro replace free(x) calls
-#define free(x) myfree(x)
+#define free(x) ; myfree(x)
 
 // just function signature 
 void* mymalloc(int x);
-void  myfree(int x);
+void  myfree(void* x);
 
 // the metadata struct, 2 things (6 bytes total)
 //      1. int - magic number to indicate is struct
@@ -23,7 +23,7 @@ void  myfree(int x);
 //      2. short - how much space next alloted
 struct meta {
     int magicNum;
-    short used;
+    unsigned short used;
 };
 
 #endif

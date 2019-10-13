@@ -18,13 +18,15 @@
 
 int main(){
     
-    int i = 0;
+    int i = 99;
     char *ptr;
     while (i<100){
-        ptr = (char*) malloc(1);
+        ptr = (char*) malloc(4090);
         printf("String is %p\n", ptr);
         i++;
     }
+    printf("This is ptr's used: %hi\n", *(short*)ptr)
+    free(ptr);
     /*
     int i;
     for (i = 0; i<=3; i++) {
