@@ -8,9 +8,9 @@
 #define _HEADER_H
 
 // 1st macro replace malloc(x) calls
-#define malloc(x) mymalloc(x)
+#define malloc(x) mymalloc(x,__FILE__,__LINE__)
 // 2nd macro replace free(x) calls
-#define free(x) ; myfree(x)
+#define free(x)  myfree(x,__FILE__,__LINE__)
 
 // just function signature 
 void* mymalloc(int x);

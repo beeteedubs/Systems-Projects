@@ -21,12 +21,23 @@ int main(){
     int i = 99;
     char *ptr;
     while (i<100){
-        ptr = (char*) malloc(4090);
-        printf("String is %p\n", ptr);
+        ptr = (char*) malloc(5);
+        printf("assign1.c: ptr's memeory address is %p\n", ptr);
         i++;
-    }
-    printf("This is ptr's used: %hi\n", *(short*)ptr)
+}
     free(ptr);
+
+    ptr = (char*)malloc(6);
+    /*
+    char * ptr2 = (char*)malloc(30);
+    printf("String is ptr2 %p\n", ptr2);
+
+    char * ptr3 = (char*)malloc(40);
+    printf("String is ptr3 %p\n", ptr3);
+    */
+    
+    //printf("This is ptr's used: %hi\n", *(short*)ptr);
+    //free(ptr);
     /*
     int i;
     for (i = 0; i<=3; i++) {
