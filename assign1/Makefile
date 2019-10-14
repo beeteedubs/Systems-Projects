@@ -1,10 +1,10 @@
 all: libBuild build
 
 clean: 
-	rm -f assign1
-libClean: library.c
-	rm -f library.o
-libBuild: library.c libClean
-	gcc -c -g library.c -Wall
-build: assign1.c clean
-	gcc assign1.c library.o -g -o assign1 -Wall  
+	rm -f memgrind
+libClean: mymalloc.c
+	rm -f mymalloc.o
+libBuild: mymalloc.c libClean
+	gcc -c -g mymalloc.c -Wall
+build: memgrind.c clean
+	gcc memgrind.c mymalloc.o -g -o memgrind -Wall  
