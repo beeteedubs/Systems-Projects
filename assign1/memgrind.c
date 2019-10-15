@@ -4,20 +4,21 @@
 #include "mymalloc.h"
 
 int main(){
-   /*
+     srand(time(0));
+   
     
     //A:
     int i = 0;
     char *ptr;
     while (i<150){
         ptr = (char*) malloc(1);
-        printf("ptr is: %x\n", ptr);
+        printf("ptr is: %p\n", ptr);
         free(ptr);
         i++;
     }
     printf("success for A:\n\n\n\n  ");
     
-*/
+
 /*
     //B:
     char*ptr = 0x60160 - 1;
@@ -53,7 +54,7 @@ int main(){
     }   
     printf("success for B:\n\n\n\n  ");
 */
-
+/*
     
     //C:
     int numMalls = 0;
@@ -61,7 +62,7 @@ int main(){
     char* ptr3;
     int indexCounter2 = 0;
     int timez = 0;
-    srand(time(0));
+   
     int rando;
     while(numMalls < 50){ 
        
@@ -88,7 +89,7 @@ int main(){
     while(counterTemp < 50) {
         free(&array2[counterTemp]);
         counterTemp++;
-    }/*
+    }*//*
     
     char* element;
     int loopC = 0;
@@ -98,11 +99,80 @@ int main(){
         loopC++;
     }
     //printf("array2's 0th index: %c\n", *array2[0]);
-   // printf("number of times really ran: %d\n", timez);
+   // printf("number of times realuly ran: %d\n", timez);
    // printf("success for C: \n\n\n\n ");
+    */
+  /*  
+    //D:
+   int counterD = 0;//counts number of mallocs
+   int amtMal;
+    int memCap = 0;//should add up no more than 4096 bytes
+    int malOrFree = 0; // 0 malloc, 1 free
+    int arrDCounter = 0;// index of arrayD
+    char* arrD[50];
 
+    int junkCounter = 0;
+    while(junkCounter<50){
+        arrD[junkCounter] = NULL;
+        junkCounter ++;
+    }
+   while(counterD < 50 && memCap < 4096){
+        malOrFree = rand()%2;
+        if (malOrFree == 0){
+            amtMal = (rand()%64) + 1; //gives [1,64]
+            arrD[arrDCounter] = (char*)malloc(amtMal);
+            printf("Malloc'ed: %p\n", arrD[arrDCounter]);
+            counterD++;
+            arrDCounter++;
+            memCap = memCap + amtMal + sizeof(struct meta); 
+        }else{
 
-        */
+            if(arrDCounter > 0){
+              arrDCounter--;
+            printf("Freeing: %p\n", arrD[arrDCounter]);
+            free(arrD[arrDCounter]);
+            }     
+        }
+   }
+   int freeEverything = 0;
+   while(freeEverything < 50)
+   {         
+       printf("\n\nBomb: Freeing: %p\n", arrD[freeEverything]);
+        free(arrD[freeEverything]);
+       freeEverything++;
+   }*/
+   /* 
+    //E
+   //free from a random index in the array
+    char* arrE[50];
+    int counterE = 0;
+    int freeCounter = 0;
+    while(counterE < 50){ //loop runs 25 times, but mallocs 50 times, and frees 25 to show 
+    
 
+        arrE[counterE] = (char*)malloc(5);
+        printf("Malloc'ed: %p\n", arrE[counterE]);
+        counterE++;
+     
+        arrE[counterE] = (char*)malloc(5);
+        printf("Malloc'ed: %p\n", arrE[counterE]);
+
+        printf("Freeing: %p\n", arrE[freeCounter]);
+        free(arrE[freeCounter]);
+        counterE++;
+        freeCounter++;
+    }*/
+    //F
+    /*
+    int f = 0;
+    char *ptrF;
+    while (f<150){
+        ptrF = (char*) malloc(1);
+        printf("ptrf is: %p\n", ptrF);
+       // *ptrF = 'F';
+        free(ptrF);
+        f++;
+    }
+    printf("success for f:\n\n\n\n  ");*/
     return 1;
 }

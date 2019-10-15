@@ -76,11 +76,12 @@ void* mymalloc(int x, const char* file, int line){
 }
 
 void printMal(){
-    printf("This is arr: %s\n", arr);
+    printf("This is arr: %p\n", arr);
 }
 
 
 void  myfree(void* ptr, const char* file, int line){
+    printMal();
     // check if pointer, equal to NULL, beginning of memory, 
     // check pointer points to our array
     //printf("myfreeing----: ");
