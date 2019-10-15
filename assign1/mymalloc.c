@@ -71,10 +71,10 @@ void* mymalloc(int x, const char* file, int line){
         return NULL;
     }
     char* ptr = ((char *) &arr[i-x]);
-    printMal();
     return (void*) ptr;
 
 }
+
 void printMal(){
     printf("This is arr: %s\n", arr);
 }
@@ -89,7 +89,7 @@ void  myfree(void* ptr, const char* file, int line){
     }
 
     if(!((char*)ptr<=&arr[4095] && (char*)ptr>=&arr[0])){
-        printf("you goofed out of range");
+        //printf("you goofed out of range");
         return;
     }
 

@@ -18,7 +18,7 @@ int main(){
     printf("success for A:\n\n\n\n  ");
     
 */
-
+/*
     //B:
     char*ptr = 0x60160 - 1;
     free(ptr);
@@ -52,8 +52,8 @@ int main(){
         //printf("indexCounter: %d\n", indexCounter);
     }   
     printf("success for B:\n\n\n\n  ");
+*/
 
-/*
     
     //C:
     int numMalls = 0;
@@ -68,16 +68,17 @@ int main(){
         //if random number is even, we malloc
         //if random number is odd, we free
         rando = rand() % 2;
-        printf("rando: %d\n", rand());
         if(rando == 0) {
             ptr3 = (char*) malloc(1);
+            printf("Malloc'ed: %p\n", ptr3);
             array2[indexCounter2] = ptr3;
             numMalls++;
             indexCounter2++;
         }
         else {
-            free(&array2[indexCounter2]);
-            if(array2[indexCounter2] != NULL) {
+            if(indexCounter2 > 0 && array2[indexCounter2 - 1] != NULL) {
+                printf("Freeing: %p\n", array2[indexCounter2 - 1]);
+                free(array2[indexCounter2 - 1]);
                 indexCounter2--;
             }
         }
@@ -87,7 +88,7 @@ int main(){
     while(counterTemp < 50) {
         free(&array2[counterTemp]);
         counterTemp++;
-    }
+    }/*
     
     char* element;
     int loopC = 0;
