@@ -4,35 +4,45 @@
 #include "mymalloc.h"
 
 int main(){
-   
-    /*
+   /*
+    
     //A:
     int i = 0;
     char *ptr;
     while (i<150){
         ptr = (char*) malloc(1);
-        printf("ptr is: %c\n", *ptr);
+        printf("ptr is: %x\n", ptr);
         free(ptr);
         i++;
     }
     printf("success for A:\n\n\n\n  ");
     
-
+*/
 
     //B:
+    char*ptr = 0x60160 - 1;
+    free(ptr);
+    ptr = 0x60160 + 4096;
+    free(ptr);
+    
     int counter2 = 0;
     char *ptr2;
     char* array[50];
     int indexCounter = 0;
     while (counter2 < 150){
         ptr2 = (char*)malloc(1);
+        printf("Pointer at %p\n", ptr2);
         array[indexCounter] = ptr2;
         int freeCounter = 49;
         if(indexCounter == 49){
+            printf("Freeing now\n");
             while(freeCounter>=0){
-                free(&array[indexCounter]);
+                printf("Freeing %p\n", array[freeCounter]);
+                free(array[freeCounter]);
                 freeCounter--;
             }
+            printf("\n\n\n");
+
             indexCounter = 0;
             continue;
         }
@@ -43,8 +53,8 @@ int main(){
     }   
     printf("success for B:\n\n\n\n  ");
 
-
-    */
+/*
+    
     //C:
     int numMalls = 0;
     char* array2[50];
@@ -91,7 +101,7 @@ int main(){
    // printf("success for C: \n\n\n\n ");
 
 
-        
+        */
 
     return 1;
 }

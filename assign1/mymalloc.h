@@ -15,6 +15,7 @@
 // just function signature 
 void* mymalloc(int x, const char* file, int line);
 void  myfree(void* x, const char* file, int line);
+void printMal();
 
 // the metadata struct, 2 things (6 bytes total)
 //      1. int - magic number to indicate is struct
@@ -25,5 +26,5 @@ struct meta {
     int magicNum;
     unsigned short used;
 };
-static char arr[4096];
+
 #endif
