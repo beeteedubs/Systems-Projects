@@ -67,7 +67,7 @@ void* mymalloc(int x, const char* file, int line){
     //printf("This is i: %d\n",i);
     // creates ptr to 6 bytes after metadata
     if (i >  4096){
-        printf("\n------------null-----\n");
+        //printf("\n------------null-----\n");
         return NULL;
     }
     char* ptr = ((char *) &arr[i-x]);
@@ -81,7 +81,6 @@ void printMal(){
 
 
 void  myfree(void* ptr, const char* file, int line){
-    printMal();
     // check if pointer, equal to NULL, beginning of memory, 
     // check pointer points to our array
     //printf("myfreeing----: ");
