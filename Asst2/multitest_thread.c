@@ -4,15 +4,43 @@
 #include<stdlib.h>
 #include "pthread.h" //-lpthread :gcc -o thread threadPlay.c lpthread
 
-struct thread_arg{
-    int x;
-    int y;
-};
+
+
+//IF FOUND RETURN 1, ELSE RETURN 0
+void* search (void* vars){
+
+    printf("thread created!\n");
+    struct thread_vars* var = (struct thread_vars*)vars;
+    int* array = var->array;
+    int target = var->target;
+    int arrayLen = var->arrayLen;
+
+    int* found = (int*)malloc(sizeof(int)*1);
+
+    int counter;
+    for(counter = 0; counter<arrayLen; counter += 1){
+        if(*(array + counter) == target){
+            *found = target;
+            pthread_exit((void*)found);
+        }
+    }
+    *found = -1;
+    pthread_exit((void*)found);
+    
+}
 
 
 
 //pthread_create(pthread_t* handle, pthread_attr_t* attr, (void*) (*func)(void*), void*args)
 
+/*
+struct thread_arg{
+    int x;
+    int y;
+};
+*/
+
+/*
 void*sum(void*args){
     
     printf("thread created\n");
@@ -25,8 +53,10 @@ void*sum(void*args){
     pthread_exit((void*)result);
 
 }
+*/
 
-int rando(int argc, char** argv){
+/*
+int main(int argc, char** argv){
     pthread_t t1, t2;
     struct thread_arg t1_arg,t2_arg;
     int*retval1, *retval2;
@@ -49,8 +79,5 @@ int rando(int argc, char** argv){
     pthread_join(t2, (void**)&retval2);
     printf("thread 2 exited with return val%d\n", *retval2);
 }
+*/
 
-
-int search (int* array, int target){
-    
-}

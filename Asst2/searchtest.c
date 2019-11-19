@@ -10,7 +10,29 @@
 #include"multitest.h"
 
 
+//PRINTS ARRAY "array" OF LENGTH "length"
+void printArray(int*array, int length){
+    int counter = 0;
+     while(counter<length){
+        printf("%d, ", *(array + counter));
+        counter += 1;
+    }
+}
 
+
+//CREATES AN ORDERED ARRAY OF LENGTH "newLen"
+void* fillArr(int* array, int newLen){
+    int counter;
+    printf("This is an ordered array: ");
+    for(counter = 0; counter<newLen; counter += 1){
+        *(array + counter) = counter;
+        printf("%d, ", *(array + counter));
+    }
+    return;
+}
+
+
+//SCRAMBLES ARRAY "array"
 void* scramble(int*array, int arrayLen){
     
     int counter2, randoNum;
@@ -36,51 +58,36 @@ void* scramble(int*array, int arrayLen){
     return;
 }
 
-
-void printArray(int*array, int length){
-    int counter = 0;
-     while(counter<length){
-        printf("%d, ", *(array + counter));
-        counter += 1;
-    }
-}
-
-//CREATES ORDERED ARRAY OF LENGTH "newLen"
-int* fillArr(int newLen){
-    int* retVal = (int*)malloc(sizeof(int)*newLen);
-    int counter;
-    printf("This is an ordered array: ");
-    for(counter = 0; counter<newLen; counter += 1){
-        *(retVal+counter) = counter;
-        printf("%d, ", *(retVal + counter));
-    }
-    return retVal;
-}
-
+//use just 1 thread to run search
 int main (int argc, char** argv){
     srand(time(0));
     // VARIABLES
     int counter = 0;
     int arrLen;
     int* arrPtr =(int*) malloc(sizeof(int)*10);
+    pthread_t t1;
+    struct thread_vars vars;
+    int* retVal;
     
     // FILLING IN "arr"    
-    int *arr = fillArr(10);
+    fillArr(arrPtr, 10);
 
     // SCRAMBLE
-    scramble(arr, 10);
+    scramble(arrPtr, 10);
   
-
-    // EXPAND ARRAY LENGTH
-    int* newPtr;
     int reallocSize = 0; //current size after hard coded 10
-    for(counter = 0; counter<3; counter += 1){
-        reallocSize += 20;//incremented amount idk u choose whats a good stable number ????
-        
-        arr = fillArr(reallocSize);
+    for(counter = 0; counter<1; counter += 1){
+        reallocSize += 20;
             
         arrPtr  = (int*) realloc(arrPtr, sizeof(int) * reallocSize);
-        scramble(arr,reallocSize);
+        fillArr(arrPtr, reallocSize);
+        scramble(arrPtr,reallocSize);
+        
+        printf("creating thread\n");
+        pthread_create(&t1, NULL, search, (void*)&vars);
+
+        printf("calling join on thread\n");
+        pthread_join(&t1, (void**)&retVal);
     }
     
     return 0;
