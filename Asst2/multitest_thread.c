@@ -7,7 +7,7 @@
 
 
 //IF FOUND RETURN 1, ELSE RETURN 0
-void* search (void* vars){
+void* searchHelper (void* vars){
 
     printf("thread created!\n");
     struct thread_vars* var = (struct thread_vars*)vars;
@@ -20,13 +20,18 @@ void* search (void* vars){
     int counter;
     for(counter = 0; counter<arrayLen; counter += 1){
         if(*(array + counter) == target){
-            *found = target;
+            *found = counter;
             pthread_exit((void*)found);
         }
     }
     *found = -1;
-    pthread_exit((void*)found);
+    pthread_exit((void*)found);    
+}
+
+//RETURN INT OF INDEX, OR -1 IF FAILED
+int search (int* array, int arrayLen, int target){
     
+    return 0;
 }
 
 

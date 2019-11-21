@@ -28,7 +28,6 @@ void* fillArr(int* array, int newLen){
         *(array + counter) = counter;
         printf("%d, ", *(array + counter));
     }
-    return;
 }
 
 
@@ -48,36 +47,46 @@ void* scramble(int*array, int arrayLen){
         temp = *(array + counter2);
         *(array + counter2) = *(array + randoNum);
         *(array + randoNum) = temp;
-
     }
     
     //Print the scrambled array
     printArray(array,arrayLen);
     printf("\n");
-    
-    return;
 }
 
+void* rescramble(int prevTarget, int* array, int arrayLen){
+    int randoNum = rando()%arrayLen;
+    int temp = *(array + prevTarget);
+    *(array + prevTarget) = *(array + randoNum);
+    *(array + randoNum) = *(array + prevTarget);
+
+}
 //use just 1 thread to run search
 int main (int argc, char** argv){
     srand(time(0));
     // VARIABLES
     int counter = 0;
-    int arrLen;
-    int* arrPtr =(int*) malloc(sizeof(int)*10);
+    int arrLen = 1; //this will change as oppropriate in future
+    int target = 7; //hardcode to always be the case
+    int* arrPtr =(int*) malloc(sizeof(int)*arrLen);
+
     pthread_t t1;
     struct thread_vars vars;
+    vars.array = arrPtr;
+    vars.target = 7;
     int* retVal;
     
-    // FILLING IN "arr"    
-    fillArr(arrPtr, 10);
+    // FILLING IN "arrPtr"    
+    fillArr(arrPtr, arrLen);
 
     // SCRAMBLE
-    scramble(arrPtr, 10);
+    scramble(arrPtr, arrLen);
   
     int reallocSize = 0; //current size after hard coded 10
     for(counter = 0; counter<1; counter += 1){
         reallocSize += 20;
+        vars.arrayLen = reallocSize;
+
             
         arrPtr  = (int*) realloc(arrPtr, sizeof(int) * reallocSize);
         fillArr(arrPtr, reallocSize);
@@ -87,7 +96,9 @@ int main (int argc, char** argv){
         pthread_create(&t1, NULL, search, (void*)&vars);
 
         printf("calling join on thread\n");
-        pthread_join(&t1, (void**)&retVal);
+        pthread_join(t1, (void**)&retVal);
+
+        printf("thread exited with return val: %d\n", *retVal);
     }
     
     return 0;
