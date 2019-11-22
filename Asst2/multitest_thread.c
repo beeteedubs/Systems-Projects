@@ -1,15 +1,17 @@
-#include <stdio.h>
-#include <fcntl.h>
-#include "multitest.h"
+#include<stdio.h>
 #include<stdlib.h>
-#include "pthread.h" //-lpthread :gcc -o thread threadPlay.c lpthread
+#include<unistd.h>
+#include<fcntl.h>
+#include"multitest.h"
+#include<stdlib.h>
+#include"pthread.h" //-lpthread :gcc -o thread threadPlay.c lpthread
+#include<time.h>
+#include<sys/time.h>
 
 
-
-//IF FOUND RETURN 1, ELSE RETURN 0
+//IF FOUND RETURN INDEX VALUE, ELSE RETURN -1
 void* searchHelper (void* vars){
-
-    printf("thread created!\n");
+    
     struct thread_vars* var = (struct thread_vars*)vars;
     int* array = var->array;
     int target = var->target;
@@ -21,6 +23,7 @@ void* searchHelper (void* vars){
     for(counter = 0; counter<arrayLen; counter += 1){
         if(*(array + counter) == target){
             *found = counter;
+            printf("This thread found it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
             pthread_exit((void*)found);
         }
     }
@@ -29,9 +32,55 @@ void* searchHelper (void* vars){
 }
 
 //RETURN INT OF INDEX, OR -1 IF FAILED
-int search (int* array, int arrayLen, int target){
+int search (int* array, int target, int size){
     
-    return 0;
+    printf("We are using threads.");
+    struct thread_vars vars;
+    int* retVal;
+    int foundIndex = -1;
+    
+    int remainder = size%250;
+    int threadAmt = size/250;
+    if(remainder != 0){
+        threadAmt += 1;
+    }
+
+    printf("\nnumThreads: %d, size: %d\n", threadAmt, size);
+    
+    int i = 0;
+    struct timeval start;
+    struct timeval end;
+    suseconds_t timer = 0;
+    gettimeofday(&start,0);
+
+    for(i = 0; i < threadAmt; i += 1){ 
+
+        if(remainder != 0 && i == (threadAmt -1)){
+            vars.arrayLen = remainder;
+        }else{
+            vars.arrayLen = 250; 
+        }
+        printf("\ncreating thread of size: %d\n", vars.arrayLen);
+        
+        vars.array = array + 250*i;
+        vars.target = target;
+        
+        pthread_t t1;
+       
+        pthread_create(&t1, NULL, searchHelper, (void*)&vars);
+        pthread_join(t1, (void**)&retVal);
+        
+        
+        if (*retVal != -1){
+            foundIndex = *retVal;
+        }
+    } 
+        gettimeofday(&end,0);
+        timer = end.tv_usec - start.tv_usec;
+        printf("Time alloted is %ld\n", timer); 
+
+        printf("thread exited with return val: %d\n\n", foundIndex);
+    return foundIndex;
 }
 
 

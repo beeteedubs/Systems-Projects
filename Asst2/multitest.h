@@ -1,9 +1,9 @@
 #ifndef KITTENS_H
 #define KITTENS_H
 
-#define search(x) search(x)
-void* search(void*vars);
-   
+#define search(x,y,z) search(x,y,z)
+int search(int*arrary, int target, int size);
+
 struct thread_vars{
     int* array;
     int target;

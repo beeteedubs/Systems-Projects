@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<signal.h>
 #include<errno.h>
 #include<unistd.h>
@@ -6,100 +7,95 @@
 #include<sys/stat.h>
 #include<fcntl.h>
 #include<signal.h>
+#include<time.h>
 #include<string.h>
 #include"multitest.h"
 
 
-//PRINTS ARRAY "array" OF LENGTH "length"
-void printArray(int*array, int length){
-    int counter = 0;
-     while(counter<length){
-        printf("%d, ", *(array + counter));
-        counter += 1;
-    }
-}
 
-
-//CREATES AN ORDERED ARRAY OF LENGTH "newLen"
-void* fillArr(int* array, int newLen){
+//ORDERS "array" FROM "start" TO "newLen" WITH CORRESPONDING VALUES
+void fillArr(int* array, int newLen, int start){
     int counter;
-    printf("This is an ordered array: ");
-    for(counter = 0; counter<newLen; counter += 1){
+    for(counter = start; counter<newLen; counter += 1){
         *(array + counter) = counter;
-        printf("%d, ", *(array + counter));
     }
 }
-
 
 //SCRAMBLES ARRAY "array"
-void* scramble(int*array, int arrayLen){
+void scramble(int*array, int arrayLen){
     
-    int counter2, randoNum;
-    int temp = 0;
+    int counter, randoNum, temp;
 
-    printf("These is a scrambled array: ");
-    for(counter2 = 0; counter2 < arrayLen; counter2+=1){
+    for(counter = 0; counter < arrayLen; counter += 1){
 
-        //CREATE RANDOM INDEX VALUE TO SWAP
-        randoNum = rand()%arrayLen; //randomNum = [0,arrayLen -1]
-        
+        randoNum = rand()%arrayLen;
+           
         //Swap values
-        temp = *(array + counter2);
-        *(array + counter2) = *(array + randoNum);
+        temp = *(array + counter);
+        *(array + counter) = *(array + randoNum);
         *(array + randoNum) = temp;
-    }
-    
-    //Print the scrambled array
-    printArray(array,arrayLen);
-    printf("\n");
+    } 
 }
 
-void* rescramble(int prevTarget, int* array, int arrayLen){
-    int randoNum = rando()%arrayLen;
+//SWAPS PREVIOUS TARGET INDEX "prevTarget" WITH RANDOM INDEX IN TNEW ARRAY "array"
+void rescramble(int prevTarget, int* array, int arrayLen){
+
+    int randoNum = rand()%arrayLen;
+
+    //Swap values
     int temp = *(array + prevTarget);
     *(array + prevTarget) = *(array + randoNum);
-    *(array + randoNum) = *(array + prevTarget);
+    *(array + randoNum) = temp;
+ }
 
-}
-//use just 1 thread to run search
-int main (int argc, char** argv){
-    srand(time(0));
-    // VARIABLES
-    int counter = 0;
-    int arrLen = 1; //this will change as oppropriate in future
-    int target = 7; //hardcode to always be the case
-    int* arrPtr =(int*) malloc(sizeof(int)*arrLen);
-
-    pthread_t t1;
-    struct thread_vars vars;
-    vars.array = arrPtr;
-    vars.target = 7;
-    int* retVal;
+//TEST SEARCHING THROUGH ARRAYS OF LENGTH [0:250:10000] AND 20,000 (41 SEARCHES TOTAL), EACH THREAD HANDLES [1,250] ELEMENTS
+void testOne(int* array, int arrLen, int index, int targ){
     
-    // FILLING IN "arrPtr"    
-    fillArr(arrPtr, arrLen);
+    
+    int reallocSize = 0;
+    int oldSize = arrLen;
+    int indexVal = index;
+    int target = targ;
+    while(reallocSize <= 1000){
+        //reassign oldSize 
+        oldSize = reallocSize;
 
-    // SCRAMBLE
-    scramble(arrPtr, arrLen);
-  
-    int reallocSize = 0; //current size after hard coded 10
-    for(counter = 0; counter<1; counter += 1){
-        reallocSize += 20;
-        vars.arrayLen = reallocSize;
+        //change reallocSize
+        reallocSize += 250;
 
-            
-        arrPtr  = (int*) realloc(arrPtr, sizeof(int) * reallocSize);
-        fillArr(arrPtr, reallocSize);
-        scramble(arrPtr,reallocSize);
-        
-        printf("creating thread\n");
-        pthread_create(&t1, NULL, search, (void*)&vars);
+        //realloc array to size reallocSize
+        array = (int*)realloc(array, sizeof(int)*reallocSize);
 
-        printf("calling join on thread\n");
-        pthread_join(t1, (void**)&retVal);
+        //fill in rest of array
+        fillArr(array,reallocSize,oldSize);
 
-        printf("thread exited with return val: %d\n", *retVal);
+        //changes index of previous target
+        rescramble(indexVal, array, reallocSize);
+
+        //yeaaa searches
+        indexVal = search(array, target, reallocSize);
     }
     
+}
+
+
+int main (int argc, char** argv){
+
+    srand(time(0));
+    int arrLen = 250; //this will change as oppropriate in future
+    int target = 7; //hardcode to always be the case
+    int* array =(int*) malloc(sizeof(int)*arrLen);
+
+    // FILLING IN "arrPtr"    
+    fillArr(array, arrLen,0);
+
+    // SCRAMBLE
+    scramble(array, arrLen);
+
+    // CALLING SEARCH ONCE
+    int indexVal = search(array, target, arrLen);
+
+    testOne(array, arrLen, indexVal, target); 
+
     return 0;
 }
