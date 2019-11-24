@@ -1,0 +1,4 @@
+Test case 1: Test case 1 was to see how array length affected the runtime of both Processes and threads. We tested up to 10000 array length incrementing it each time by 250 to keep a steady constant increase of processes/threads. We also added a final array length of 20000 to see how the trend of the data would dip off.
+
+Test case 2: Test case 2 was to see how different amount of processes/threads with the same amount of array length affect runtime. We tested this by changing the block size to 250, 200, 100 respectively. We incremented the array by the same block size as in test case 1 and recorded our data. Again there is a final array length tested at 20000 to see the end of the trend of data.
+

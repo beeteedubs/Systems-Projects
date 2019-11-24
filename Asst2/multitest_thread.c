@@ -16,14 +16,18 @@ void* searchHelper (void* vars){
     int* array = var->array;
     int target = var->target;
     int arrayLen = var->arrayLen;
+    int* x = var->j;
 
     int* found = (int*)malloc(sizeof(int)*1);
 
     int counter;
     for(counter = 0; counter<arrayLen; counter += 1){
         if(*(array + counter) == target){
-            *found = counter;
-            printf("This thread found it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+            *found = counter + (*x)*250;
+           // printf("This thread found it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+           // printf("*x*250: %d\n", (*x)*250);
+           // printf("*found: %d\n", *found);
+
             pthread_exit((void*)found);
         }
     }
@@ -34,7 +38,8 @@ void* searchHelper (void* vars){
 //RETURN INT OF INDEX, OR -1 IF FAILED
 int search (int* array, int target, int size){
     
-    printf("We are using threads.");
+    printf("\nWe are using threads.\n");
+   // printf("This is the target: %d\n", target);
     struct thread_vars vars;
     int* retVal;
     int foundIndex = -1;
@@ -45,9 +50,10 @@ int search (int* array, int target, int size){
         threadAmt += 1;
     }
 
-    printf("\nnumThreads: %d, size: %d\n", threadAmt, size);
+    printf("Iteration: %d, size: %d\n", threadAmt, size);
     
-    int i = 0;
+    int* j = (int*)malloc(sizeof(int));
+    int i; 
     struct timeval start;
     struct timeval end;
     suseconds_t timer = 0;
@@ -60,11 +66,13 @@ int search (int* array, int target, int size){
         }else{
             vars.arrayLen = 250; 
         }
-        printf("\ncreating thread of size: %d\n", vars.arrayLen);
+       // printf("creating thread of size: %d\n", vars.arrayLen);
         
         vars.array = array + 250*i;
         vars.target = target;
-        
+       // printf("i: %d\n", i);
+        *j = i;
+        vars.j =j ;
         pthread_t t1;
        
         pthread_create(&t1, NULL, searchHelper, (void*)&vars);
@@ -79,7 +87,7 @@ int search (int* array, int target, int size){
         timer = end.tv_usec - start.tv_usec;
         printf("Time alloted is %ld\n", timer); 
 
-        printf("thread exited with return val: %d\n\n", foundIndex);
+        printf("thread exited with return val: %d\n", foundIndex);
     return foundIndex;
 }
 

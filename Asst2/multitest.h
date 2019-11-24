@@ -8,5 +8,6 @@ struct thread_vars{
     int* array;
     int target;
     int arrayLen;
+    int* j;
 };
 #endif

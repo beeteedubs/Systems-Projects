@@ -8,7 +8,7 @@ thread:
 	$(CC) -lpthread -g searchtest.c multitest_thread.c -o  $(EXECUTABLE_NAME) -Wall
 
 process:
-	gcc -g  searchtest.c multitest_process.c -o  $(EXECUTABLE_NAME) -Wall
+	gcc -g  searchtest.c multitest_proc.c -o  $(EXECUTABLE_NAME) -Wall
 
 clean:
 	rm -f searchtest

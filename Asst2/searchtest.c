@@ -41,27 +41,31 @@ void scramble(int*array, int arrayLen){
 void rescramble(int prevTarget, int* array, int arrayLen){
 
     int randoNum = rand()%arrayLen;
+    printf("randoNum: %d\n", randoNum);
 
     //Swap values
     int temp = *(array + prevTarget);
     *(array + prevTarget) = *(array + randoNum);
     *(array + randoNum) = temp;
+    printf("*(array+randoNum): %d\n", *(array+randoNum));
  }
 
 //TEST SEARCHING THROUGH ARRAYS OF LENGTH [0:250:10000] AND 20,000 (41 SEARCHES TOTAL), EACH THREAD HANDLES [1,250] ELEMENTS
 void testOne(int* array, int arrLen, int index, int targ){
     
-    
-    int reallocSize = 0;
-    int oldSize = arrLen;
+
+    int blockSize = 100;
+    int reallocSize = 100;
+    int oldSize = 0;
     int indexVal = index;
     int target = targ;
-    while(reallocSize <= 1000){
+    while(reallocSize <= arrLen){
+        
         //reassign oldSize 
         oldSize = reallocSize;
 
         //change reallocSize
-        reallocSize += 250;
+        reallocSize += 100;
 
         //realloc array to size reallocSize
         array = (int*)realloc(array, sizeof(int)*reallocSize);
@@ -74,15 +78,24 @@ void testOne(int* array, int arrLen, int index, int targ){
 
         //yeaaa searches
         indexVal = search(array, target, reallocSize);
+	//printf("indexVal: %d\n", indexVal);
+        //printf("*(array+indexVal): %d\n", *(array+indexVal));
+
+
     }
-    
 }
+
+
 
 
 int main (int argc, char** argv){
 
+    struct timeStruct{
+        int b;
+        int* time;
+    };
     srand(time(0));
-    int arrLen = 250; //this will change as oppropriate in future
+    int arrLen = 100; //this will change as oppropriate in future
     int target = 7; //hardcode to always be the case
     int* array =(int*) malloc(sizeof(int)*arrLen);
 
@@ -92,10 +105,15 @@ int main (int argc, char** argv){
     // SCRAMBLE
     scramble(array, arrLen);
 
+   // struct timeStruct timeArray = (int*)malloc(sizeof(int)*timeArray);
+    //timeArray.b = 0;
+    int*time = (int*)malloc(sizeof(int)*50);
     // CALLING SEARCH ONCE
     int indexVal = search(array, target, arrLen);
+    //printf("The index of target is: %d\n", indexVal);
+    //printf("The value at this index is: %d\n", *(array+indexVal));
 
-    testOne(array, arrLen, indexVal, target); 
-
+    testOne(array, 9800, indexVal, target);//make 10,000 and then 20,000 
+    
     return 0;
 }

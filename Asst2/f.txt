@@ -1,0 +1,691 @@
+
+We are using threads.
+Iteration: 1, size: 100
+Time alloted is 591
+thread exited with return val: 70
+randoNum: 198
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 1, size: 200
+Time alloted is 167
+thread exited with return val: 198
+randoNum: 276
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 2, size: 300
+Time alloted is 176
+thread exited with return val: 276
+randoNum: 125
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 2, size: 400
+Time alloted is 213
+thread exited with return val: 125
+randoNum: 54
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 2, size: 500
+Time alloted is 262
+thread exited with return val: 54
+randoNum: 30
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 3, size: 600
+Time alloted is 363
+thread exited with return val: 30
+randoNum: 198
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 3, size: 700
+Time alloted is 131
+thread exited with return val: 198
+randoNum: 469
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 4, size: 800
+Time alloted is 176
+thread exited with return val: 469
+randoNum: 462
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 4, size: 900
+Time alloted is 163
+thread exited with return val: 462
+randoNum: 209
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 4, size: 1000
+Time alloted is 278
+thread exited with return val: 209
+randoNum: 392
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 5, size: 1100
+Time alloted is 198
+thread exited with return val: 392
+randoNum: 617
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 5, size: 1200
+Time alloted is 258
+thread exited with return val: 617
+randoNum: 1121
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 6, size: 1300
+Time alloted is 250
+thread exited with return val: 1121
+randoNum: 1166
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 6, size: 1400
+Time alloted is 360
+thread exited with return val: 1166
+randoNum: 389
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 6, size: 1500
+Time alloted is 244
+thread exited with return val: 389
+randoNum: 1496
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 7, size: 1600
+Time alloted is 355
+thread exited with return val: 1496
+randoNum: 452
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 7, size: 1700
+Time alloted is 392
+thread exited with return val: 452
+randoNum: 1252
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 8, size: 1800
+Time alloted is 382
+thread exited with return val: 1252
+randoNum: 1506
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 8, size: 1900
+Time alloted is 380
+thread exited with return val: 1506
+randoNum: 576
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 8, size: 2000
+Time alloted is 403
+thread exited with return val: 576
+randoNum: 1098
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 9, size: 2100
+Time alloted is 367
+thread exited with return val: 1098
+randoNum: 1612
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 9, size: 2200
+Time alloted is 365
+thread exited with return val: 1612
+randoNum: 300
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 10, size: 2300
+Time alloted is 403
+thread exited with return val: 300
+randoNum: 1056
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 10, size: 2400
+Time alloted is 413
+thread exited with return val: 1056
+randoNum: 70
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 10, size: 2500
+Time alloted is 415
+thread exited with return val: 70
+randoNum: 1222
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 11, size: 2600
+Time alloted is 455
+thread exited with return val: 1222
+randoNum: 702
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 11, size: 2700
+Time alloted is 440
+thread exited with return val: 702
+randoNum: 453
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 12, size: 2800
+Time alloted is 505
+thread exited with return val: 453
+randoNum: 542
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 12, size: 2900
+Time alloted is 491
+thread exited with return val: 542
+randoNum: 1800
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 12, size: 3000
+Time alloted is 513
+thread exited with return val: 1800
+randoNum: 688
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 13, size: 3100
+Time alloted is 531
+thread exited with return val: 688
+randoNum: 998
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 13, size: 3200
+Time alloted is 547
+thread exited with return val: 998
+randoNum: 2751
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 14, size: 3300
+Time alloted is 546
+thread exited with return val: 2751
+randoNum: 216
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 14, size: 3400
+Time alloted is 534
+thread exited with return val: 216
+randoNum: 1223
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 14, size: 3500
+Time alloted is 534
+thread exited with return val: 1223
+randoNum: 3105
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 15, size: 3600
+Time alloted is 623
+thread exited with return val: 3105
+randoNum: 1946
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 15, size: 3700
+Time alloted is 732
+thread exited with return val: 1946
+randoNum: 3021
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 16, size: 3800
+Time alloted is 653
+thread exited with return val: 3021
+randoNum: 3126
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 16, size: 3900
+Time alloted is 606
+thread exited with return val: 3126
+randoNum: 3909
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 16, size: 4000
+Time alloted is 608
+thread exited with return val: 3909
+randoNum: 1083
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 17, size: 4100
+Time alloted is 637
+thread exited with return val: 1083
+randoNum: 2818
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 17, size: 4200
+Time alloted is 728
+thread exited with return val: 2818
+randoNum: 178
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 18, size: 4300
+Time alloted is 819
+thread exited with return val: 178
+randoNum: 2356
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 18, size: 4400
+Time alloted is 737
+thread exited with return val: 2356
+randoNum: 2684
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 18, size: 4500
+Time alloted is 680
+thread exited with return val: 2684
+randoNum: 1767
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 19, size: 4600
+Time alloted is 912
+thread exited with return val: 1767
+randoNum: 1552
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 19, size: 4700
+Time alloted is 836
+thread exited with return val: 1552
+randoNum: 1189
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 20, size: 4800
+Time alloted is 724
+thread exited with return val: 1189
+randoNum: 1420
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 20, size: 4900
+Time alloted is 698
+thread exited with return val: 1420
+randoNum: 1710
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 20, size: 5000
+Time alloted is 778
+thread exited with return val: 1710
+randoNum: 3565
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 21, size: 5100
+Time alloted is 786
+thread exited with return val: 3565
+randoNum: 3470
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 21, size: 5200
+Time alloted is 818
+thread exited with return val: 3470
+randoNum: 2223
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 22, size: 5300
+Time alloted is 922
+thread exited with return val: 2223
+randoNum: 3717
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 22, size: 5400
+Time alloted is 761
+thread exited with return val: 3717
+randoNum: 5326
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 22, size: 5500
+Time alloted is 763
+thread exited with return val: 5326
+randoNum: 345
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 23, size: 5600
+Time alloted is 816
+thread exited with return val: 345
+randoNum: 2440
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 23, size: 5700
+Time alloted is 872
+thread exited with return val: 2440
+randoNum: 3428
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 24, size: 5800
+Time alloted is 832
+thread exited with return val: 3428
+randoNum: 4298
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 24, size: 5900
+Time alloted is 834
+thread exited with return val: 4298
+randoNum: 2334
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 24, size: 6000
+Time alloted is 1040
+thread exited with return val: 2334
+randoNum: 2580
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 25, size: 6100
+Time alloted is 880
+thread exited with return val: 2580
+randoNum: 6039
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 25, size: 6200
+Time alloted is 983
+thread exited with return val: 6039
+randoNum: 4633
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 26, size: 6300
+Time alloted is 1023
+thread exited with return val: 4633
+randoNum: 4331
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 26, size: 6400
+Time alloted is 939
+thread exited with return val: 4331
+randoNum: 355
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 26, size: 6500
+Time alloted is 913
+thread exited with return val: 355
+randoNum: 256
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 27, size: 6600
+Time alloted is 885
+thread exited with return val: 256
+randoNum: 2089
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 27, size: 6700
+Time alloted is 969
+thread exited with return val: 2089
+randoNum: 3302
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 28, size: 6800
+Time alloted is 897
+thread exited with return val: 3302
+randoNum: 3930
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 28, size: 6900
+Time alloted is 902
+thread exited with return val: 3930
+randoNum: 1715
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 28, size: 7000
+Time alloted is 977
+thread exited with return val: 1715
+randoNum: 4463
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 29, size: 7100
+Time alloted is 950
+thread exited with return val: 4463
+randoNum: 3365
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 29, size: 7200
+Time alloted is 953
+thread exited with return val: 3365
+randoNum: 1134
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 30, size: 7300
+Time alloted is 1084
+thread exited with return val: 1134
+randoNum: 3241
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 30, size: 7400
+Time alloted is 966
+thread exited with return val: 3241
+randoNum: 6421
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 30, size: 7500
+Time alloted is 974
+thread exited with return val: 6421
+randoNum: 5870
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 31, size: 7600
+Time alloted is 1093
+thread exited with return val: 5870
+randoNum: 1560
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 31, size: 7700
+Time alloted is 996
+thread exited with return val: 1560
+randoNum: 973
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 32, size: 7800
+Time alloted is 1070
+thread exited with return val: 973
+randoNum: 4011
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 32, size: 7900
+Time alloted is 1098
+thread exited with return val: 4011
+randoNum: 3580
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 32, size: 8000
+Time alloted is 965
+thread exited with return val: 3580
+randoNum: 7984
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 33, size: 8100
+Time alloted is 1018
+thread exited with return val: 7984
+randoNum: 2576
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 33, size: 8200
+Time alloted is 987
+thread exited with return val: 2576
+randoNum: 6302
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 34, size: 8300
+Time alloted is 1024
+thread exited with return val: 6302
+randoNum: 2959
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 34, size: 8400
+Time alloted is 1021
+thread exited with return val: 2959
+randoNum: 6894
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 34, size: 8500
+Time alloted is 1098
+thread exited with return val: 6894
+randoNum: 7128
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 35, size: 8600
+Time alloted is 1049
+thread exited with return val: 7128
+randoNum: 6404
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 35, size: 8700
+Time alloted is 1110
+thread exited with return val: 6404
+randoNum: 7986
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 36, size: 8800
+Time alloted is 1166
+thread exited with return val: 7986
+randoNum: 7208
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 36, size: 8900
+Time alloted is 1080
+thread exited with return val: 7208
+randoNum: 6303
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 36, size: 9000
+Time alloted is 1097
+thread exited with return val: 6303
+randoNum: 4720
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 37, size: 9100
+Time alloted is 1129
+thread exited with return val: 4720
+randoNum: 2841
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 37, size: 9200
+Time alloted is 1329
+thread exited with return val: 2841
+randoNum: 842
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 38, size: 9300
+Time alloted is 1296
+thread exited with return val: 842
+randoNum: 4653
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 38, size: 9400
+Time alloted is 1153
+thread exited with return val: 4653
+randoNum: 5972
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 38, size: 9500
+Time alloted is 1166
+thread exited with return val: 5972
+randoNum: 2597
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 39, size: 9600
+Time alloted is 1178
+thread exited with return val: 2597
+randoNum: 1062
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 39, size: 9700
+Time alloted is 1273
+thread exited with return val: 1062
+randoNum: 9161
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 40, size: 9800
+Time alloted is 1208
+thread exited with return val: 9161
+randoNum: 8651
+*(array+randoNum): 7
+
+We are using threads.
+Iteration: 40, size: 9900
+Time alloted is 1231
+thread exited with return val: 8651
