@@ -4,17 +4,19 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <time.h>
+#include <limits.h>
+#include"multitest.h"
 
-int search(int* array, int target, int size) {
+struct data search(int* array, int target, int size, int blockSize) {
 printf("We are using processes\n");
+struct data retVal;
+retVal.targetIndex = -1;
 struct timeval start;
 struct timeval end;
-suseconds_t timer = 0;
+retVal.timer = 0;
 gettimeofday(&start,0);
-int blockSize = 250;
 int found = 0;
 int status;
-int targetIndex = 0;
 int processAmount = (size / blockSize); //how many children processes wanted
 int remainderNum = (size % blockSize); //checking remainder
 if(remainderNum != 0) {
@@ -22,6 +24,7 @@ if(remainderNum != 0) {
  }
 //printf("process amount is %d\n", processAmount); //for test case comparing amount of processes
 pid_t* id = (pid_t*) malloc(sizeof(pid_t) * processAmount); // pid of current proccess
+printf("Iteration: %d, size: %d\n", processAmount, size);
 int i = 0;
 for(i = 0; i < processAmount; i++) {
   //creating child procceses
@@ -74,7 +77,7 @@ for(counter2 = 0; counter2 < processAmount; counter2++) {
     if(WEXITSTATUS(status) != 254) {
       //only one exit status should not be 254 if the value is found
       found = 1;
-      targetIndex = WEXITSTATUS(status) + (counter2 * blockSize);
+      retVal.targetIndex = WEXITSTATUS(status) + (counter2 * blockSize);
       //since exit status can only go up to 250, we return a value ranging from [0, 249]
       //and adding the ith child it is multiplied with blocksize giving the targetIndex in the array
     }
@@ -82,11 +85,12 @@ for(counter2 = 0; counter2 < processAmount; counter2++) {
  }
 free(id);
 gettimeofday(&end,0);
-timer = ((end.tv_sec - start.tv_sec) * 1000000 + (end.tv_usec - start.tv_usec));
-printf("Time alloted is %d\n", timer);
+retVal.timer = ((end.tv_sec - start.tv_sec) * 1000000 + (end.tv_usec - start.tv_usec));
+printf("Time alloted is %d\n", retVal.timer);
 if(found == 1) {
-  printf("indexVal is %d\n", targetIndex);
-  return targetIndex;
+  printf("indexVal is %d\n", retVal.targetIndex);
+  printf("\n");
+  return retVal;
  }
- else return -1;
+ else return retVal;
 }
